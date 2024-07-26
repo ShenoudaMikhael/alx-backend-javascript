@@ -1,9 +1,9 @@
 /* eslint-disable  no-underscore-dangle */
 export default class Car {
-  constructor(brand, motor, model) {
+  constructor(brand, motor, color) {
     this.brand = brand;
     this.motor = motor;
-    this.model = model;
+    this.color = color;
   }
 
   get brand() {
@@ -14,8 +14,8 @@ export default class Car {
     return this._motor;
   }
 
-  get model() {
-    return this._model;
+  get color() {
+    return this._color;
   }
 
   set brand(brand) {
@@ -26,8 +26,8 @@ export default class Car {
     this._motor = motor;
   }
 
-  set model(model) {
-    this._model = model;
+  set color(color) {
+    this._color = color;
   }
 
   static get [Symbol.species]() {
