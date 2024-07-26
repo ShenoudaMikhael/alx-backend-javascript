@@ -20,14 +20,14 @@ export default class HolbertonCourse {
   }
 
   set name(name) {
-    if (!(name instanceof String)) {
+    if ((typeof name !== 'string') && !(name instanceof String)) {
       throw new TypeError('Name must be a string');
     }
     this._name = name;
   }
 
   set length(length) {
-    if (!(length instanceof Number)) {
+    if ((typeof length !== 'number') && !(length instanceof Number)) {
       throw new TypeError('Length must be a number');
     }
     this._length = length;
