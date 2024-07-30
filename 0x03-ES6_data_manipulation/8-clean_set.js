@@ -1,5 +1,5 @@
 export default function cleanSet(set, startString) {
-  if (!startString) return "";
+  if (!startString || typeof startString !== 'string' || !set || !(set instanceof Set)) return "";
   let q = [];
 
   set.forEach((e) => {
