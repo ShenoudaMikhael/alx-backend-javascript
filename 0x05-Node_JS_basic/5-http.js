@@ -1,5 +1,6 @@
 const fs = require('fs');
 const http = require('http');
+
 const FIE_PATH = process.argv.length > 2 ? process.argv[2] : '';
 const countStudents = (filePath) => new Promise((resolve, reject) => {
   if (!filePath) {
@@ -14,7 +15,7 @@ const countStudents = (filePath) => new Promise((resolve, reject) => {
       const byLine = data.split('\n');
       const fullLine = byLine.filter((v) => v.length > 0);
       const noHead = fullLine.slice(1);
-    //   console.log(`Number of students: ${noHead.length}`);
+      //   console.log(`Number of students: ${noHead.length}`);
       j = [`Number of students: ${noHead.length}`];
       const q = {};
 
@@ -42,8 +43,8 @@ const app = http.createServer((req, res) => {
     res.end(Buffer.from('Hello Holberton School!'));
   } else if (req.url === '/students') {
     countStudents(FIE_PATH).then((v) => {
-        res.setHeader('Content-Type', 'text/plain');
-        res.setHeader('Content-Length', v.join('\n').length);
+      res.setHeader('Content-Type', 'text/plain');
+      res.setHeader('Content-Length', v.join('\n').length);
       res.end(Buffer.from(`${v.join('\n')}`));
     });
   }
