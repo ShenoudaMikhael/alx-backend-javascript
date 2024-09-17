@@ -43,7 +43,7 @@ const app = http.createServer(async (req, res) => {
     let dbInfo = 'This is the list of our students\n';
     await countStudents(FIE_PATH)
       .then((msg) => {
-        dbInfo += msg;
+        dbInfo += msg.join('\n');
         res.end(dbInfo);
       })
       .catch((err) => {
