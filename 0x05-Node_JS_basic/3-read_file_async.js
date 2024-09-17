@@ -6,10 +6,12 @@ const countStudents = (filePath) => new Promise((resolve, reject) => {
       reject(new Error('Cannot load the database'));
     }
     if (data) {
+      let j = '';
       const byLine = data.split('\n');
       const fullLine = byLine.filter((v) => v.length > 0);
       const noHead = fullLine.slice(1);
       console.log(`Number of students: ${noHead.length}`);
+      j = `Number of students: ${noHead.length}\n`;
       const q = {};
 
       noHead.forEach((v) => {
@@ -22,8 +24,9 @@ const countStudents = (filePath) => new Promise((resolve, reject) => {
       });
       Object.keys(q).forEach((k) => {
         console.log(`Number of students in ${k}: ${q[k].length}. List: ${q[k].join(', ')}`);
+        j += `Number of students in ${k}: ${q[k].length}. List: ${q[k].join(', ')}\n`;
       });
-      resolve(true);
+      resolve(j);
     }
   });
 });
