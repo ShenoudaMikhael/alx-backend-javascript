@@ -5,6 +5,6 @@ rl.question('Welcome to Holberton School, what is your name?\n', (ans) => {
   console.log(`Your name is: ${ans}`);
   // rl.close();
 });
-rl.on('close', (stream) => {
+rl.on('close', () => {
   console.log('This important software is now closing');
 });
