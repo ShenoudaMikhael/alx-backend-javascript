@@ -1,10 +1,7 @@
-// 0-console.js file
+const { stdout } = require('process')
 
-
-const {  stdout } = require('process')
-function displayMessage(message){
-
-    stdout.write(`${message}\n`);
+function displayMessage(message) {
+  stdout.write(message);
 }
 
-module.exports = displayMessage
+module.exports = displayMessage;
