@@ -35,18 +35,21 @@ const countStudents = (filePath) => new Promise((resolve, reject) => {
     }
   });
 });
-const app = http.createServer((req, res) => {
+const app = http.createServer(async (req, res) => {
+  res.statusCode = 200;
   if (req.url === '/') {
-    res.setHeader('Content-Type', 'text/plain');
-    res.setHeader('Content-Length', 'Hello Holberton School!'.length);
-    res.statusCode = 200;
-    res.end(Buffer.from('Hello Holberton School!'));
+    res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
-    countStudents(FIE_PATH).then((v) => {
-      res.setHeader('Content-Type', 'text/plain');
-      res.setHeader('Content-Length', v.join('\n').length);
-      res.end(Buffer.from(`${v.join('\n')}`));
-    });
+    let dbInfo = 'This is the list of our students\n';
+    await countStudents(FIE_PATH)
+      .then((msg) => {
+        dbInfo += msg;
+        res.end(dbInfo);
+      })
+      .catch((err) => {
+        dbInfo += err.message;
+        res.end(dbInfo);
+      });
   }
 });
 
