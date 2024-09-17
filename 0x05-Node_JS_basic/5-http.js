@@ -35,12 +35,14 @@ const countStudents = (filePath) => new Promise((resolve, reject) => {
   });
 });
 const app = http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
   if (req.url === '/') {
-    
+    res.setHeader('Content-Type', 'text/plain');
+    res.setHeader('Content-Length', 'Hello Holberton School!'.length);
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
     countStudents(FIE_PATH).then((v) => {
+        res.setHeader('Content-Type', 'text/plain');
+        res.setHeader('Content-Length', v.join('\n').length);
       res.end(`${v.join('\n')}`);
     });
   }
