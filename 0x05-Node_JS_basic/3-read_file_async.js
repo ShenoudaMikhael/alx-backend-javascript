@@ -1,10 +1,10 @@
 const fs = require('fs');
 
 const countStudents = (filePath) => new Promise((resolve, reject) => {
-  if (!fs.existsSync(filePath)) {
-    reject(new Error('Cannot load the database'));
-  }
   fs.readFile(filePath, 'utf8', (err, data) => {
+    if (err) {
+      reject(new Error('Cannot load the database'));
+    }
     const byLine = data.split('\n');
     const fullLine = byLine.filter((v) => v.length > 0);
     const noHead = fullLine.slice(1);
