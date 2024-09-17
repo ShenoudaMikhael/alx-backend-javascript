@@ -38,12 +38,13 @@ const app = http.createServer((req, res) => {
   if (req.url === '/') {
     res.setHeader('Content-Type', 'text/plain');
     res.setHeader('Content-Length', 'Hello Holberton School!'.length);
-    res.end('Hello Holberton School!');
+    res.statusCode = 200;
+    res.end(Buffer.from('Hello Holberton School!'));
   } else if (req.url === '/students') {
     countStudents(FIE_PATH).then((v) => {
         res.setHeader('Content-Type', 'text/plain');
         res.setHeader('Content-Length', v.join('\n').length);
-      res.end(`${v.join('\n')}`);
+      res.end(Buffer.from(`${v.join('\n')}`));
     });
   }
 });
