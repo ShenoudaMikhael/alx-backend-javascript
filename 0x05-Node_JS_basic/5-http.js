@@ -14,8 +14,8 @@ const countStudents = (filePath) => new Promise((resolve, reject) => {
       const byLine = data.split('\n');
       const fullLine = byLine.filter((v) => v.length > 0);
       const noHead = fullLine.slice(1);
-      console.log(`Number of students: ${noHead.length}`);
-      j = `Number of students: ${noHead.length}\n`;
+    //   console.log(`Number of students: ${noHead.length}`);
+      j = [`Number of students: ${noHead.length}`];
       const q = {};
 
       noHead.forEach((v) => {
@@ -27,8 +27,8 @@ const countStudents = (filePath) => new Promise((resolve, reject) => {
         }
       });
       Object.keys(q).forEach((k) => {
-        console.log(`Number of students in ${k}: ${q[k].length}. List: ${q[k].join(', ')}`);
-        j += `Number of students in ${k}: ${q[k].length}. List: ${q[k].join(', ')}\n`;
+        // console.log(`Number of students in ${k}: ${q[k].length}. List: ${q[k].join(', ')}`);
+        j.push(`Number of students in ${k}: ${q[k].length}. List: ${q[k].join(', ')}`);
       });
       resolve(j);
     }
@@ -37,10 +37,11 @@ const countStudents = (filePath) => new Promise((resolve, reject) => {
 const app = http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   if (req.url === '/') {
+    
     res.end('Hello Holberton School!');
   } else if (req.url === '/students') {
     countStudents(FIE_PATH).then((v) => {
-      res.end(`${v}`);
+      res.end(`${v.join('\n')}`);
     });
   }
 });
