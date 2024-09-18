@@ -1,0 +1,14 @@
+{
+  "name": "0x06-unittests_in_js",
+  "version": "1.0.0",
+  "description": "ALX BACKEND REPO",
+  "main": "index.js",
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha"
+  },
+  "author": "Shenouda Mikhael",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^10.7.3"
+  }
+}
